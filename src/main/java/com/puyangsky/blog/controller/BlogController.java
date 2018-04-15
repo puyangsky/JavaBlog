@@ -22,7 +22,7 @@ public class BlogController {
 
     @RequestMapping("/test")
     public ModelAndView test(@RequestParam(name = "name")String name) {
-       ModelAndView mv = new ModelAndView("index");
+       ModelAndView mv = new ModelAndView("views/test");
        mv.addObject("name", name);
        return mv;
     }
@@ -31,5 +31,11 @@ public class BlogController {
     public String index(Model model) {
         model.addAttribute("name", "Fuck");
         return "index";
+    }
+
+    @RequestMapping("/home")
+    public String home(Model model) {
+//        model.addAttribute("name", "Fuck");
+        return "views/index";
     }
 }
