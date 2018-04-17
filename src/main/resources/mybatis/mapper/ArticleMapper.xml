@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.puyangsky.blog.dao" >
+<mapper namespace="com.puyangsky.blog.dao.ArticleDao" >
     <resultMap id="BaseResultMap" type="com.puyangsky.blog.model.Article" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="title" property="title" jdbcType="VARCHAR" />
         <result column="content" property="content" jdbcType="VARCHAR" />
         <result column="author" property="author" jdbcType="VARCHAR" />
-        <result column="publish_time" property="publish_time" jdbcType="INTEGER" />
+        <result column="publish_time" property="publish_time" jdbcType="TIMESTAMP" />
     </resultMap>
     <sql id="Base_Column_List" >
         id, title, content, author, publish_time

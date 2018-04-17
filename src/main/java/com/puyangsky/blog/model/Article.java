@@ -14,6 +14,17 @@ public class Article {
     private String author;
     private Timestamp publish_time;
 
+    public Article() {
+    }
+
+    public Article(long id, String title, String content, String author, Timestamp publish_time) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+        this.author = author;
+        this.publish_time = publish_time;
+    }
+
     public long getId() {
         return id;
     }
@@ -51,17 +62,6 @@ public class Article {
     }
 
     public void setPublish_time(Timestamp publish_time) {
-        this.publish_time = publish_time;
-    }
-
-    public Article() {
-    }
-
-    public Article(long id, String title, String content, String author, Timestamp publish_time) {
-        this.id = id;
-        this.title = title;
-        this.content = content;
-        this.author = author;
         this.publish_time = publish_time;
     }
 }
