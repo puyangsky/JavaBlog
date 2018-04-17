@@ -22,4 +22,9 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> getArticlesByTitle(String title) {
         return articleDao.selectByTitle(title);
     }
+
+    @Override
+    public boolean insertArticle(Article article) {
+        return articleDao.insert(article) == 1;
+    }
 }
