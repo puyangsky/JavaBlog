@@ -33,7 +33,7 @@ public class BlogController {
         return "index";
     }
 
-    @RequestMapping("/home")
+    @RequestMapping("/")
     public String home(Model model) {
         return "views/index";
     }
