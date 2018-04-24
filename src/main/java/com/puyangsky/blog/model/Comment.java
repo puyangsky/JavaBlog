@@ -7,7 +7,7 @@ import java.sql.Timestamp;
  * Date:        2018/4/19 上午1:36
  */
 public class Comment {
-    private int commentId;
+    private int id;
     private String commentAuthor;
     private String commentContent;
     private Timestamp commentPublishTime;

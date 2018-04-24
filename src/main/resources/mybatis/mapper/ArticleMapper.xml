@@ -6,7 +6,7 @@
         <result column="title" property="title" jdbcType="VARCHAR" />
         <result column="content" property="content" jdbcType="VARCHAR" />
         <result column="author" property="author" jdbcType="VARCHAR" />
-        <result column="publish_time" property="publish_time" jdbcType="TIMESTAMP" />
+        <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
     </resultMap>
     <sql id="Base_Column_List" >
         id, title, content, author, publish_time
@@ -29,9 +29,9 @@
     </delete>
     <insert id="insert" parameterType="com.puyangsky.blog.model.Article" >
         insert into article (id, title, content,
-        author, publish_time)
+        author, publishTime)
         values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
-        #{author,jdbcType=VARCHAR}, #{publish_time, jdbcType=TIMESTAMP})
+        #{author,jdbcType=VARCHAR}, #{publishTime, jdbcType=TIMESTAMP})
     </insert>
     <!--<insert id="insertSelective" parameterType="com.xdd.entity.User" >-->
         <!--insert into user_t-->

@@ -1,10 +1,7 @@
 package com.puyangsky.blog.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 
 /**
@@ -15,26 +12,28 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class BlogController {
 
-    @RequestMapping("/demo")
+    @RequestMapping("/test")
     public String demo() {
         return "Welcome to Puyangsky's Blog";
     }
 
-    @RequestMapping("/test")
-    public ModelAndView test(@RequestParam(name = "name") String name) {
-        ModelAndView mv = new ModelAndView("views/test");
-        mv.addObject("name", name);
-        return mv;
-    }
-
-    @RequestMapping("/index")
-    public String index(Model model) {
-        model.addAttribute("name", "Fuck");
-        return "index";
+    @RequestMapping("/login")
+    public String login() {
+        return "login";
     }
 
     @RequestMapping("/")
-    public String home(Model model) {
-        return "views/index";
+    public String index() {
+        return "index";
+    }
+
+    @RequestMapping("/admin")
+    public String admin() {
+        return "admin";
+    }
+
+    @RequestMapping("/about")
+    public String about() {
+        return "about";
     }
 }

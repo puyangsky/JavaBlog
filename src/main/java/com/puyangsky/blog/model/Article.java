@@ -12,17 +12,18 @@ public class Article {
     private String title;
     private String content;
     private String author;
-    private Timestamp publish_time;
+    private Timestamp publishTime;
+    private long clickNum;
 
     public Article() {
     }
 
-    public Article(long id, String title, String content, String author, Timestamp publish_time) {
+    public Article(long id, String title, String content, String author, Timestamp publishTime) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.author = author;
-        this.publish_time = publish_time;
+        this.publishTime = publishTime;
     }
 
     public long getId() {
@@ -57,11 +58,11 @@ public class Article {
         this.author = author;
     }
 
-    public Timestamp getPublish_time() {
-        return publish_time;
+    public Timestamp getPublishTime() {
+        return publishTime;
     }
 
-    public void setPublish_time(Timestamp publish_time) {
-        this.publish_time = publish_time;
+    public void setPublishTime(Timestamp publishTime) {
+        this.publishTime = publishTime;
     }
 }
