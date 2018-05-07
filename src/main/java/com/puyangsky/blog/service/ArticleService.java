@@ -12,5 +12,7 @@ import java.util.List;
 @Service
 public interface ArticleService {
     List<Article> getArticlesByTitle(String title);
+    List<Article> getArticles(int page, int pageNum);
+    Article getArticleById(int id);
     boolean insertArticle(Article article);
 }

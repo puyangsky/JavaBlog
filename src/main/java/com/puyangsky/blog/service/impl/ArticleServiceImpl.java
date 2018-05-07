@@ -24,6 +24,21 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public List<Article> getArticles(int page, int pageNum) {
+        int begin = (page - 1) * pageNum;
+        return articleDao.selectByPage(begin, pageNum);
+    }
+
+    @Override
+    public Article getArticleById(int id) {
+        List<Article> articles = articleDao.selectByPrimaryKey(id);
+        if (articles != null && articles.size() > 0) {
+            return articles.get(0);
+        }
+        return null;
+    }
+
+    @Override
     public boolean insertArticle(Article article) {
         return articleDao.insert(article) == 1;
     }

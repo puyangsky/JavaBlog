@@ -1,6 +1,7 @@
 package com.puyangsky.blog.dao;
 
 import com.puyangsky.blog.model.Article;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,6 +15,9 @@ public interface ArticleDao {
     List<Article> selectByPrimaryKey(int id);
 
     List<Article> selectByTitle(String title);
+
+    List<Article> selectByPage(@Param("begin") int begin,
+                               @Param("num") int num);
 
     int deleteByPrimaryKey(int id);
 

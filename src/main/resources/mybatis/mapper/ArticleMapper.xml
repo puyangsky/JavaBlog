@@ -23,6 +23,12 @@
         from article
         where title LIKE concat(concat('%',#{title,jdbcType=VARCHAR}),'%')
     </select>
+    <select id="selectByPage" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from article
+        LIMIT #{begin, jdbcType=INTEGER}, #{num, jdbcType=INTEGER}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
         delete from article
         where id = #{id,jdbcType=INTEGER}

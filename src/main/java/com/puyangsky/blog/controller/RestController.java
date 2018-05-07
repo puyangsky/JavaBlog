@@ -15,7 +15,7 @@ import java.util.List;
  */
 
 @org.springframework.web.bind.annotation.RestController
-@RequestMapping("/rest")
+@RequestMapping("/api")
 public class RestController {
 
     @Resource
@@ -24,6 +24,13 @@ public class RestController {
     @GetMapping("/article/{title}")
     public String getArticle(@PathVariable String title) {
         List<Article> articles = articleService.getArticlesByTitle(title);
+        return JSON.toJSONString(articles);
+    }
+
+    @GetMapping("/article")
+    public String getArticles(@RequestParam(value = "page") int page,
+                              @RequestParam(value = "pageNum") int pageNum) {
+        List<Article> articles = articleService.getArticles(pageNum, page);
         return JSON.toJSONString(articles);
     }
 
