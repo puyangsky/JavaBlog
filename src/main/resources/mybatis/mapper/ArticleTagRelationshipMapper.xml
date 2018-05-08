@@ -1,43 +1,32 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.puyangsky.blog.dao.ArticleDao" >
+<mapper namespace="com.puyangsky.blog.dao.ArticleTagRelationshipDao" >
     <resultMap id="BaseResultMap" type="com.puyangsky.blog.model.Tag" >
         <id column="id" property="id" jdbcType="INTEGER" />
-        <result column="title" property="title" jdbcType="VARCHAR" />
-        <result column="content" property="content" jdbcType="VARCHAR" />
-        <result column="author" property="author" jdbcType="VARCHAR" />
-        <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
     </resultMap>
     <sql id="Base_Column_List" >
-        id, title, content, author, publish_time
+        id, name
     </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="selectTagNamesByArticleId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select
-        <include refid="Base_Column_List" />
-        from article
-        where id = #{id,jdbcType=INTEGER}
+          t.id, t.name
+        from tag as t
+        where t.id in (
+          select a.tag_id
+          from article_tag_relationship as a
+          where a.article_id = #{articleId, jdbcType=INTEGER}
+        )
     </select>
-    <select id="selectByTitle" resultMap="BaseResultMap" parameterType="java.lang.String" >
-        select
-        <include refid="Base_Column_List" />
-        from article
-        where title LIKE concat(concat('%',#{title,jdbcType=VARCHAR}),'%')
-    </select>
-    <select id="selectByPage" resultMap="BaseResultMap" >
-        select
-        <include refid="Base_Column_List" />
-        from article
-        LIMIT #{begin, jdbcType=INTEGER}, #{num, jdbcType=INTEGER}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-        delete from article
-        where id = #{id,jdbcType=INTEGER}
+
+    <delete id="deleteArticleTagRelationship" >
+        delete from article_tag_relationship
+        where article_id = #{articleId,jdbcType=INTEGER}
+        and tag_id = #{tagId,jdbcType=INTEGER}
     </delete>
-    <insert id="insert" parameterType="com.puyangsky.blog.model.Article" >
-        insert into article (id, title, content,
-        author, publishTime)
-        values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
-        #{author,jdbcType=VARCHAR}, #{publishTime, jdbcType=TIMESTAMP})
+    <insert id="insertArticleTagRelationship" parameterType="com.puyangsky.blog.model.ArticleTagRelationship" >
+        insert into article_tag_relationship (article_id, tag_id)
+        values (#{articleId,jdbcType=INTEGER}, #{tagId,jdbcType=INTEGER})
     </insert>
     <!--<insert id="insertSelective" parameterType="com.xdd.entity.User" >-->
         <!--insert into user_t-->

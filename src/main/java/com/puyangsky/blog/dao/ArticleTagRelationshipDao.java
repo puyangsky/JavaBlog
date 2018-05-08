@@ -1,6 +1,8 @@
 package com.puyangsky.blog.dao;
 
 import com.puyangsky.blog.model.ArticleTagRelationship;
+import com.puyangsky.blog.model.Tag;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,8 +16,9 @@ public interface ArticleTagRelationshipDao {
 
     int insertArticleTagRelationship(ArticleTagRelationship articleTagRelationship);
 
-    int deleteArticleTagRelationship(int articleId, int tagId);
+    int deleteArticleTagRelationship(@Param("articleId") int articleId,
+                                     @Param("tagId") int tagId);
 
-    List<String> getTagNamesByArticleId(int articleId);
+    List<Tag> selectTagNamesByArticleId(int articleId);
 
 }

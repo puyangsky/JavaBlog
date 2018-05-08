@@ -1,6 +1,10 @@
 package com.puyangsky.blog.service;
 
+import com.puyangsky.blog.model.ArticleTagRelationship;
+import com.puyangsky.blog.model.Tag;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Author:      puyangsky
@@ -9,6 +13,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface ArticleTagRelationshipService {
+    boolean insert(ArticleTagRelationship articleTagRelationship);
 
+    boolean delete(int articleId, int tagId);
+
+    List<Tag> getTagNamesByArticleId(int articleId);
 
 }

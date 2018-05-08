@@ -1,7 +1,10 @@
 package com.puyangsky.blog.controller;
 
 import com.puyangsky.blog.model.Article;
+import com.puyangsky.blog.model.ArticleTagRelationship;
+import com.puyangsky.blog.model.Tag;
 import com.puyangsky.blog.service.ArticleService;
+import com.puyangsky.blog.service.ArticleTagRelationshipService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +25,9 @@ public class BlogController {
 
     @Resource
     private ArticleService articleService;
+
+    @Resource
+    private ArticleTagRelationshipService articleTagRelationshipService;
 
     @RequestMapping("/test")
     public String demo() {
@@ -55,6 +61,8 @@ public class BlogController {
                           Model model) {
         Article article = articleService.getArticleById(articleId);
         model.addAttribute("article", article);
+        List<Tag> tags = articleTagRelationshipService.getTagNamesByArticleId(articleId);
+        model.addAttribute("tags", tags);
         return "main";
     }
 

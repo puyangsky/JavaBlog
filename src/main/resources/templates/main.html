@@ -74,28 +74,15 @@
                     <h4>Posted by <a href="#"><span th:text="${article.author}"></span></a> on <span th:text="${article.publishTime}"></span> </h4>
                     <p th:text="${article.content}">
                     </p>
-                    <a th:href="@{/article/${article.id}}" class="btn btn-default btn-lg "> Read More <i class="fa fa-angle-right"></i></a>
                 </div>
             </div>
             <div class="col-md-1"></div>
             <div class="col-md-3" style="padding-top: 30px;">
-				<div class="row">
-                <ul class="list-group">
-                    <li class="list-group-item"><strong>CATEGORIES</strong></li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
+                <div class="list-group-item" style="background-color: burlywood"><strong>CATEGORIES</strong></div>
+                <ul th:each="tag : ${tags}" class="list-group">
+                    <li class="list-group-item" th:text="${tag.name}"></li>
                 </ul>
-				</div>
 				<div class="row">
-				<h3>Advertising</h3>
-				
-
 				</div>
             </div>
         </div>
