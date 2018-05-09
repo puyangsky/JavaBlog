@@ -63,6 +63,7 @@ public class BlogController {
         model.addAttribute("article", article);
         List<Tag> tags = articleTagRelationshipService.getTagNamesByArticleId(articleId);
         model.addAttribute("tags", tags);
+
         return "main";
     }
 

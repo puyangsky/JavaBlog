@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.puyangsky.blog.dao.ArticleTagRelationshipDao" >
-    <resultMap id="BaseResultMap" type="com.puyangsky.blog.model.Tag" >
+    <resultMap id="TagResultMap" type="com.puyangsky.blog.model.Tag" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="name" property="name" jdbcType="VARCHAR" />
+    </resultMap>
+    <resultMap id="ArticleResultMap" type="com.puyangsky.blog.model.Article" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="author" property="author" jdbcType="VARCHAR" />
+        <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
     </resultMap>
     <sql id="Base_Column_List" >
         id, name
     </sql>
-    <select id="selectTagNamesByArticleId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="selectTagNamesByArticleId" resultMap="TagResultMap" parameterType="java.lang.Integer" >
         select
           t.id, t.name
         from tag as t
@@ -18,6 +25,20 @@
           where a.article_id = #{articleId, jdbcType=INTEGER}
         )
     </select>
+
+    <select id="selectArticlesByTagName" resultMap="ArticleResultMap" parameterType="java.lang.String" >
+        select
+          a.id, a.title, a.content, a.author, a.publish_time
+        from article as a
+        where a.id in (
+          select atr.article_id
+          from article_tag_relationship as atr
+          where atr.tag_id = (
+          select t.id from tag as t where t.name = #{tagName, jdbcType=VARCHAR}
+          )
+        )
+    </select>
+
 
     <delete id="deleteArticleTagRelationship" >
         delete from article_tag_relationship

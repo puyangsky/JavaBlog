@@ -1,5 +1,6 @@
 package com.puyangsky.blog.dao;
 
+import com.puyangsky.blog.model.Article;
 import com.puyangsky.blog.model.ArticleTagRelationship;
 import com.puyangsky.blog.model.Tag;
 import org.apache.ibatis.annotations.Param;
@@ -20,5 +21,7 @@ public interface ArticleTagRelationshipDao {
                                      @Param("tagId") int tagId);
 
     List<Tag> selectTagNamesByArticleId(int articleId);
+
+    List<Article> selectArticlesByTagName(@Param("tagName") String tagName);
 
 }

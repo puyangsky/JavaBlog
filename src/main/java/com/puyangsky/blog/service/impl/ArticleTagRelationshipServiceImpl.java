@@ -1,6 +1,7 @@
 package com.puyangsky.blog.service.impl;
 
 import com.puyangsky.blog.dao.ArticleTagRelationshipDao;
+import com.puyangsky.blog.model.Article;
 import com.puyangsky.blog.model.ArticleTagRelationship;
 import com.puyangsky.blog.model.Tag;
 import com.puyangsky.blog.service.ArticleTagRelationshipService;
@@ -33,5 +34,10 @@ public class ArticleTagRelationshipServiceImpl implements ArticleTagRelationship
     @Override
     public List<Tag> getTagNamesByArticleId(int articleId) {
         return articleTagRelationshipDao.selectTagNamesByArticleId(articleId);
+    }
+
+    @Override
+    public List<Article> getArticlesByTagName(String tagName) {
+        return articleTagRelationshipDao.selectArticlesByTagName(tagName);
     }
 }

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.puyangsky.blog.model.Article;
 import com.puyangsky.blog.service.ArticleService;
+import com.puyangsky.blog.service.ArticleTagRelationshipService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -20,6 +21,9 @@ public class RestController {
 
     @Resource
     private ArticleService articleService;
+
+    @Resource
+    private ArticleTagRelationshipService articleTagRelationshipService;
 
     @GetMapping("/article/{title}")
     public String getArticle(@PathVariable String title) {
@@ -39,5 +43,11 @@ public class RestController {
         JSONObject result = new JSONObject();
         result.put("result", articleService.insertArticle(article));
         return result.toJSONString();
+    }
+
+    @GetMapping("/articles")
+    public String getArticlesByTagName(@RequestParam(value = "tagName") String tagName) {
+        List<Article> articles = articleTagRelationshipService.getArticlesByTagName(tagName);
+        return JSON.toJSONString(articles);
     }
 }

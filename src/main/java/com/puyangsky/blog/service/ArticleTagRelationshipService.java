@@ -1,5 +1,6 @@
 package com.puyangsky.blog.service;
 
+import com.puyangsky.blog.model.Article;
 import com.puyangsky.blog.model.ArticleTagRelationship;
 import com.puyangsky.blog.model.Tag;
 import org.springframework.stereotype.Service;
@@ -18,5 +19,7 @@ public interface ArticleTagRelationshipService {
     boolean delete(int articleId, int tagId);
 
     List<Tag> getTagNamesByArticleId(int articleId);
+
+    List<Article> getArticlesByTagName(String tagName);
 
 }
