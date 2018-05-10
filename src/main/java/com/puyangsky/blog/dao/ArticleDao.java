@@ -19,6 +19,8 @@ public interface ArticleDao {
     List<Article> selectByPage(@Param("begin") int begin,
                                @Param("num") int num);
 
+    List<Article> selectByTime(int num);
+
     int deleteByPrimaryKey(int id);
 
     int insert(Article article);

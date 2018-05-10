@@ -29,6 +29,13 @@
         from article
         LIMIT #{begin, jdbcType=INTEGER}, #{num, jdbcType=INTEGER}
     </select>
+    <select id="selectByTime" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from article
+        order by publish_time desc
+        LIMIT #{num, jdbcType=INTEGER}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
         delete from article
         where id = #{id,jdbcType=INTEGER}

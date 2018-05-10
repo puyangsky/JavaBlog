@@ -42,4 +42,9 @@ public class ArticleServiceImpl implements ArticleService {
     public boolean insertArticle(Article article) {
         return articleDao.insert(article) == 1;
     }
+
+    @Override
+    public List<Article> getLatestArticles(int num) {
+        return null;
+    }
 }

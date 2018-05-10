@@ -15,6 +15,7 @@
     <sql id="Base_Column_List" >
         id, name
     </sql>
+
     <select id="selectTagNamesByArticleId" resultMap="TagResultMap" parameterType="java.lang.Integer" >
         select
           t.id, t.name
@@ -39,12 +40,12 @@
         )
     </select>
 
-
     <delete id="deleteArticleTagRelationship" >
         delete from article_tag_relationship
         where article_id = #{articleId,jdbcType=INTEGER}
         and tag_id = #{tagId,jdbcType=INTEGER}
     </delete>
+
     <insert id="insertArticleTagRelationship" parameterType="com.puyangsky.blog.model.ArticleTagRelationship" >
         insert into article_tag_relationship (article_id, tag_id)
         values (#{articleId,jdbcType=INTEGER}, #{tagId,jdbcType=INTEGER})

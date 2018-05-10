@@ -105,7 +105,7 @@
             <div class="col-md-3" style="padding-top: 30px;">
                 <div class="list-group-item" style="background-color: burlywood"><strong>CATEGORIES</strong></div>
                 <ul th:each="tag : ${tags}" class="list-group">
-                    <li class="list-group-item" th:text="${tag}"></li>
+                    <li class="list-group-item" th:text="${tag.name} + ' (' + ${tag.articleNum} + ')'"></li>
                 </ul>
             </div>
         </div>

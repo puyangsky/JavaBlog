@@ -21,7 +21,7 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public boolean insertTag(Tag tag) {
-        return tagDao.insertTag(tag) == 1;
+        return tagDao.insert(tag) == 1;
     }
 
     @Override

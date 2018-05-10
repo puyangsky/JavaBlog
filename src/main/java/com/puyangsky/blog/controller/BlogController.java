@@ -5,6 +5,7 @@ import com.puyangsky.blog.model.ArticleTagRelationship;
 import com.puyangsky.blog.model.Tag;
 import com.puyangsky.blog.service.ArticleService;
 import com.puyangsky.blog.service.ArticleTagRelationshipService;
+import com.puyangsky.blog.service.TagService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,6 +30,9 @@ public class BlogController {
     @Resource
     private ArticleTagRelationshipService articleTagRelationshipService;
 
+    @Resource
+    private TagService tagService;
+
     @RequestMapping("/test")
     public String demo() {
         return "Welcome to Puyangsky's Blog";
@@ -52,7 +56,9 @@ public class BlogController {
         int pageInt = Integer.valueOf(page.toString());
         int pageNumInt = Integer.valueOf(pageNum.toString());
         List<Article> articles = articleService.getArticles(pageInt, pageNumInt);
+        List<Tag> tags = tagService.getAllTags();
         model.addAttribute("articles", articles);
+        model.addAttribute("tags", tags);
         return "index";
     }
 

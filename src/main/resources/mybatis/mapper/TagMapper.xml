@@ -4,89 +4,23 @@
     <resultMap id="BaseResultMap" type="com.puyangsky.blog.model.Tag" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="articleNum" property="article_num" jdbcType="INTEGER" />
     </resultMap>
     <sql id="Base_Column_List" >
-        id, name
+        id, name, article_num
     </sql>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="selectAllTags" resultMap="BaseResultMap" >
         select
         <include refid="Base_Column_List" />
-        from article
-        where id = #{id,jdbcType=INTEGER}
+        from tag
     </select>
-    <select id="selectByTitle" resultMap="BaseResultMap" parameterType="java.lang.String" >
-        select
-        <include refid="Base_Column_List" />
-        from article
-        where title LIKE concat(concat('%',#{title,jdbcType=VARCHAR}),'%')
-    </select>
-    <select id="selectByPage" resultMap="BaseResultMap" >
-        select
-        <include refid="Base_Column_List" />
-        from article
-        LIMIT #{begin, jdbcType=INTEGER}, #{num, jdbcType=INTEGER}
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-        delete from article
-        where id = #{id,jdbcType=INTEGER}
+    <delete id="deleteTagByName" parameterType="java.lang.String" >
+        delete from tag
+        where name = #{tagName,jdbcType=VARCHAR}
     </delete>
-    <insert id="insert" parameterType="com.puyangsky.blog.model.Article" >
-        insert into article (id, title, content,
-        author, publishTime)
-        values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
-        #{author,jdbcType=VARCHAR}, #{publishTime, jdbcType=TIMESTAMP})
+    <insert id="insert" parameterType="com.puyangsky.blog.model.Tag" >
+        insert into tag (id, name, article_num)
+        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+        #{articleNum,jdbcType=INTEGER})
     </insert>
-    <!--<insert id="insertSelective" parameterType="com.xdd.entity.User" >-->
-        <!--insert into user_t-->
-        <!--<trim prefix="(" suffix=")" suffixOverrides="," >-->
-            <!--<if test="id != null" >-->
-                <!--id,-->
-            <!--</if>-->
-            <!--<if test="userName != null" >-->
-                <!--user_name,-->
-            <!--</if>-->
-            <!--<if test="password != null" >-->
-                <!--password,-->
-            <!--</if>-->
-            <!--<if test="age != null" >-->
-                <!--age,-->
-            <!--</if>-->
-        <!--</trim>-->
-        <!--<trim prefix="values (" suffix=")" suffixOverrides="," >-->
-            <!--<if test="id != null" >-->
-                <!--#{id,jdbcType=INTEGER},-->
-            <!--</if>-->
-            <!--<if test="userName != null" >-->
-                <!--#{userName,jdbcType=VARCHAR},-->
-            <!--</if>-->
-            <!--<if test="password != null" >-->
-                <!--#{password,jdbcType=VARCHAR},-->
-            <!--</if>-->
-            <!--<if test="age != null" >-->
-                <!--#{age,jdbcType=INTEGER},-->
-            <!--</if>-->
-        <!--</trim>-->
-    <!--</insert>-->
-    <!--<update id="updateByPrimaryKeySelective" parameterType="com.xdd.entity.User" >-->
-        <!--update user_t-->
-        <!--<set >-->
-            <!--<if test="userName != null" >-->
-                <!--user_name = #{userName,jdbcType=VARCHAR},-->
-            <!--</if>-->
-            <!--<if test="password != null" >-->
-                <!--password = #{password,jdbcType=VARCHAR},-->
-            <!--</if>-->
-            <!--<if test="age != null" >-->
-                <!--age = #{age,jdbcType=INTEGER},-->
-            <!--</if>-->
-        <!--</set>-->
-        <!--where id = #{id,jdbcType=INTEGER}-->
-    <!--</update>-->
-    <!--<update id="updateByPrimaryKey" parameterType="com.xdd.entity.User" >-->
-        <!--update user_t-->
-        <!--set user_name = #{userName,jdbcType=VARCHAR},-->
-        <!--password = #{password,jdbcType=VARCHAR},-->
-        <!--age = #{age,jdbcType=INTEGER}-->
-        <!--where id = #{id,jdbcType=INTEGER}-->
-    <!--</update>-->
 </mapper>

@@ -15,4 +15,5 @@ public interface ArticleService {
     List<Article> getArticles(int page, int pageNum);
     Article getArticleById(int id);
     boolean insertArticle(Article article);
+    List<Article> getLatestArticles(int num);
 }

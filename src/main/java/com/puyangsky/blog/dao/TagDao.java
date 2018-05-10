@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Repository
 public interface TagDao {
-    int insertTag(Tag tag);
+    int insert(Tag tag);
     int deleteTagByName(String name);
     int updateTagByName(@Param("oldName") String oldName,
                         @Param("newName") String newName);
