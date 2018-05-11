@@ -36,6 +36,18 @@
         order by publish_time desc
         LIMIT #{num, jdbcType=INTEGER}
     </select>
+    <select id="selectArticlesByTagName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        a.id, a.title, a.content, a.author, a.publish_time
+        from article as a
+        where a.id in (
+        select atr.article_id
+        from article_tag_relationship as atr
+        where atr.tag_id = (
+        select t.id from tag as t where t.name = #{tagName, jdbcType=VARCHAR}
+        )
+        )
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
         delete from article
         where id = #{id,jdbcType=INTEGER}

@@ -16,4 +16,5 @@ public interface ArticleService {
     Article getArticleById(int id);
     boolean insertArticle(Article article);
     List<Article> getLatestArticles(int num);
+    List<Article> getArticlesByTagName(String tagName);
 }

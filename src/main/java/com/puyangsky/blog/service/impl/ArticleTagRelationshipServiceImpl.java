@@ -35,9 +35,4 @@ public class ArticleTagRelationshipServiceImpl implements ArticleTagRelationship
     public List<Tag> getTagNamesByArticleId(int articleId) {
         return articleTagRelationshipDao.selectTagNamesByArticleId(articleId);
     }
-
-    @Override
-    public List<Article> getArticlesByTagName(String tagName) {
-        return articleTagRelationshipDao.selectArticlesByTagName(tagName);
-    }
 }

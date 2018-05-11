@@ -67,10 +67,19 @@ public class BlogController {
                           Model model) {
         Article article = articleService.getArticleById(articleId);
         model.addAttribute("article", article);
-        List<Tag> tags = articleTagRelationshipService.getTagNamesByArticleId(articleId);
+        List<Tag> tags = tagService.getAllTags();
         model.addAttribute("tags", tags);
-
         return "main";
+    }
+
+    @RequestMapping("/article")
+    public String getArticlesByTag(@RequestParam(value = "tagName") String tagName,
+                                   Model model) {
+        List<Article> articles = articleService.getArticlesByTagName(tagName);
+        model.addAttribute("articles", articles);
+        List<Tag> tags = tagService.getAllTags();
+        model.addAttribute("tags", tags);
+        return "index";
     }
 
     @RequestMapping("/admin")

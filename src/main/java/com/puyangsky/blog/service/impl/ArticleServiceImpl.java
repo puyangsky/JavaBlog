@@ -47,4 +47,9 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> getLatestArticles(int num) {
         return null;
     }
+
+    @Override
+    public List<Article> getArticlesByTagName(String tagName) {
+        return articleDao.selectArticlesByTagName(tagName);
+    }
 }

@@ -22,6 +22,4 @@ public interface ArticleTagRelationshipDao {
 
     List<Tag> selectTagNamesByArticleId(int articleId);
 
-    List<Article> selectArticlesByTagName(@Param("tagName") String tagName);
-
 }

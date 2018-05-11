@@ -47,7 +47,7 @@ public class RestController {
 
     @GetMapping("/articles")
     public String getArticlesByTagName(@RequestParam(value = "tagName") String tagName) {
-        List<Article> articles = articleTagRelationshipService.getArticlesByTagName(tagName);
+        List<Article> articles = articleService.getArticlesByTagName(tagName);
         return JSON.toJSONString(articles);
     }
 }

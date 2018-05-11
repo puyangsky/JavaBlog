@@ -20,6 +20,4 @@ public interface ArticleTagRelationshipService {
 
     List<Tag> getTagNamesByArticleId(int articleId);
 
-    List<Article> getArticlesByTagName(String tagName);
-
 }

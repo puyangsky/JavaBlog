@@ -27,19 +27,6 @@
         )
     </select>
 
-    <select id="selectArticlesByTagName" resultMap="ArticleResultMap" parameterType="java.lang.String" >
-        select
-          a.id, a.title, a.content, a.author, a.publish_time
-        from article as a
-        where a.id in (
-          select atr.article_id
-          from article_tag_relationship as atr
-          where atr.tag_id = (
-          select t.id from tag as t where t.name = #{tagName, jdbcType=VARCHAR}
-          )
-        )
-    </select>
-
     <delete id="deleteArticleTagRelationship" >
         delete from article_tag_relationship
         where article_id = #{articleId,jdbcType=INTEGER}
