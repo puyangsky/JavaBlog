@@ -1,9 +1,11 @@
 package com.puyangsky.blog.dao;
 
 import com.puyangsky.blog.model.Article;
+import com.puyangsky.blog.model.ArticleCount;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -26,4 +28,6 @@ public interface ArticleDao {
     int deleteByPrimaryKey(int id);
 
     int insert(Article article);
+
+    List<HashMap> selectByMonth();
 }

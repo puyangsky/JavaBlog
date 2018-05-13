@@ -1,11 +1,15 @@
 package com.puyangsky.blog.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.puyangsky.blog.dao.ArticleDao;
 import com.puyangsky.blog.model.Article;
+import com.puyangsky.blog.model.ArticleCount;
 import com.puyangsky.blog.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -51,5 +55,18 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> getArticlesByTagName(String tagName) {
         return articleDao.selectArticlesByTagName(tagName);
+    }
+
+    @Override
+    public List<ArticleCount> getArticleCountByMonth() {
+        List<ArticleCount> articleCounts = new ArrayList<>();
+        List<HashMap> map = articleDao.selectByMonth();
+        for (HashMap m : map) {
+            String month = (String) m.get("month");
+            long count = (long) m.get("count");
+            ArticleCount articleCount = new ArticleCount(count, month);
+            articleCounts.add(articleCount);
+        }
+        return articleCounts;
     }
 }

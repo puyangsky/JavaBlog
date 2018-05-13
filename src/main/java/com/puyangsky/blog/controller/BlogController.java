@@ -1,6 +1,8 @@
 package com.puyangsky.blog.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.puyangsky.blog.model.Article;
+import com.puyangsky.blog.model.ArticleCount;
 import com.puyangsky.blog.model.ArticleTagRelationship;
 import com.puyangsky.blog.model.Tag;
 import com.puyangsky.blog.service.ArticleService;
@@ -57,8 +59,10 @@ public class BlogController {
         int pageNumInt = Integer.valueOf(pageNum.toString());
         List<Article> articles = articleService.getArticles(pageInt, pageNumInt);
         List<Tag> tags = tagService.getAllTags();
+        List<ArticleCount> articleCounts = articleService.getArticleCountByMonth();
         model.addAttribute("articles", articles);
         model.addAttribute("tags", tags);
+        model.addAttribute("articleCounts", articleCounts);
         return "index";
     }
 

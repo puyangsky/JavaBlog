@@ -1,6 +1,7 @@
 package com.puyangsky.blog.service;
 
 import com.puyangsky.blog.model.Article;
+import com.puyangsky.blog.model.ArticleCount;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,4 +18,5 @@ public interface ArticleService {
     boolean insertArticle(Article article);
     List<Article> getLatestArticles(int num);
     List<Article> getArticlesByTagName(String tagName);
+    List<ArticleCount> getArticleCountByMonth();
 }
