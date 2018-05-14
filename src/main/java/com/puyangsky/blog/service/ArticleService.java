@@ -18,5 +18,6 @@ public interface ArticleService {
     boolean insertArticle(Article article);
     List<Article> getLatestArticles(int num);
     List<Article> getArticlesByTagName(String tagName);
+    List<Article> getArticlesByMonth(String month);
     List<ArticleCount> getArticleCountByMonth();
 }

@@ -5,6 +5,7 @@ import com.puyangsky.blog.model.ArticleCount;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,6 +23,8 @@ public interface ArticleDao {
                                @Param("num") int num);
 
     List<Article> selectArticlesByTagName(@Param("tagName") String tagName);
+
+    List<Article> selectArticlesByMonth(@Param("month") String month);
 
     List<Article> selectByTime(int num);
 

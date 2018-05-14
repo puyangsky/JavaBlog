@@ -1,6 +1,5 @@
 package com.puyangsky.blog.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.puyangsky.blog.dao.ArticleDao;
 import com.puyangsky.blog.model.Article;
 import com.puyangsky.blog.model.ArticleCount;
@@ -8,7 +7,11 @@ import com.puyangsky.blog.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -55,6 +58,20 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public List<Article> getArticlesByTagName(String tagName) {
         return articleDao.selectArticlesByTagName(tagName);
+    }
+
+    @Override
+    public List<Article> getArticlesByMonth(String month) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+            Date parsedDate = dateFormat.parse(month);
+
+            Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
+            return articleDao.selectArticlesByMonth(month);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override

@@ -54,6 +54,13 @@
         from article
         group by date_format(publish_time, "%Y-%m")
     </select>
+    <select id="selectArticlesByMonth" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from article
+        where date_format(publish_time, "%Y-%m") = #{month, jdbcType=VARCHAR}
+        order by publish_time
+    </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
         delete from article

@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.thymeleaf.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -77,12 +78,19 @@ public class BlogController {
     }
 
     @RequestMapping("/article")
-    public String getArticlesByTag(@RequestParam(value = "tagName") String tagName,
+    public String getArticlesByTag(@RequestParam(value = "tagName", required = false) String tagName,
+                                   @RequestParam(value = "month", required = false) String month,
                                    Model model) {
-        List<Article> articles = articleService.getArticlesByTagName(tagName);
-        model.addAttribute("articles", articles);
         List<Tag> tags = tagService.getAllTags();
         model.addAttribute("tags", tags);
+        if (!StringUtils.isEmpty(tagName)) {
+            List<Article> articles = articleService.getArticlesByTagName(tagName);
+            model.addAttribute("articles", articles);
+        }
+        if (!StringUtils.isEmpty(month)) {
+            List<Article> articles = articleService.getArticlesByMonth(month);
+            model.addAttribute("articles", articles);
+        }
         return "index";
     }
 
