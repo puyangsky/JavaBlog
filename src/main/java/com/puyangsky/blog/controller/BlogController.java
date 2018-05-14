@@ -17,6 +17,8 @@ import org.thymeleaf.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 /**
@@ -58,12 +60,19 @@ public class BlogController {
         }
         int pageInt = Integer.valueOf(page.toString());
         int pageNumInt = Integer.valueOf(pageNum.toString());
+        int pages = articleService.getPages(pageNumInt);
+        if (pageInt > pages) {
+            pageInt = pages;
+        }
         List<Article> articles = articleService.getArticles(pageInt, pageNumInt);
         List<Tag> tags = tagService.getAllTags();
         List<ArticleCount> articleCounts = articleService.getArticleCountByMonth();
         model.addAttribute("articles", articles);
         model.addAttribute("tags", tags);
         model.addAttribute("articleCounts", articleCounts);
+        List<Integer> pageList = IntStream.rangeClosed(1, pages).boxed().collect(Collectors.toList());
+        model.addAttribute("pages", pageList);
+        model.addAttribute("curPage", pageInt);
         return "index";
     }
 
@@ -74,6 +83,8 @@ public class BlogController {
         model.addAttribute("article", article);
         List<Tag> tags = tagService.getAllTags();
         model.addAttribute("tags", tags);
+        List<ArticleCount> articleCounts = articleService.getArticleCountByMonth();
+        model.addAttribute("articleCounts", articleCounts);
         return "main";
     }
 

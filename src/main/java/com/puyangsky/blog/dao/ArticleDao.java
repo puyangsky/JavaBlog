@@ -33,4 +33,6 @@ public interface ArticleDao {
     int insert(Article article);
 
     List<HashMap> selectByMonth();
+
+    int selectPages();
 }

@@ -20,4 +20,5 @@ public interface ArticleService {
     List<Article> getArticlesByTagName(String tagName);
     List<Article> getArticlesByMonth(String month);
     List<ArticleCount> getArticleCountByMonth();
+    int getPages(int pageNumInt);
 }

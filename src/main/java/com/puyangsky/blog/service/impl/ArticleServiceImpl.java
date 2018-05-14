@@ -6,12 +6,7 @@ import com.puyangsky.blog.model.ArticleCount;
 import com.puyangsky.blog.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -62,16 +57,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<Article> getArticlesByMonth(String month) {
-        try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
-            Date parsedDate = dateFormat.parse(month);
-
-            Timestamp timestamp = new java.sql.Timestamp(parsedDate.getTime());
-            return articleDao.selectArticlesByMonth(month);
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        return articleDao.selectArticlesByMonth(month);
     }
 
     @Override
@@ -85,5 +71,13 @@ public class ArticleServiceImpl implements ArticleService {
             articleCounts.add(articleCount);
         }
         return articleCounts;
+    }
+
+    @Override
+    public int getPages(int pageNumInt) {
+        int articleCnt = articleDao.selectPages();
+        int cnt = articleCnt / pageNumInt;
+        if (cnt == 0) return 1;
+        return articleCnt % pageNumInt == 0 ? cnt : cnt + 1;
     }
 }

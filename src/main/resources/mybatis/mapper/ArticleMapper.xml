@@ -61,7 +61,11 @@
         where date_format(publish_time, "%Y-%m") = #{month, jdbcType=VARCHAR}
         order by publish_time
     </select>
-
+    <select id="selectPages" resultType="java.lang.Integer">
+        select
+        count(id)
+        from article
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
         delete from article
         where id = #{id,jdbcType=INTEGER}
