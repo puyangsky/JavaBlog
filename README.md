@@ -12,6 +12,7 @@
 - jQuery
 - Tomcat
 - Docker
+- markdown.js
 
 ## SQL结构
 
@@ -28,3 +29,9 @@
 ## 部署
 
 Docker
+
+## TODO
+
+- 加入markdown编辑器，方便添加文章（current）
+- 给文章加上评论
+- 用户管理模块

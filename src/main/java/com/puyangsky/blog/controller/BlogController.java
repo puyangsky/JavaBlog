@@ -38,9 +38,9 @@ public class BlogController {
     @Resource
     private TagService tagService;
 
-    @RequestMapping("/test")
-    public String demo() {
-        return "Welcome to Puyangsky's Blog";
+    @RequestMapping("/edit")
+    public String edit() {
+        return "editor";
     }
 
     @RequestMapping("/login")
@@ -102,6 +102,8 @@ public class BlogController {
             List<Article> articles = articleService.getArticlesByMonth(month);
             model.addAttribute("articles", articles);
         }
+        List<ArticleCount> articleCounts = articleService.getArticleCountByMonth();
+        model.addAttribute("articleCounts", articleCounts);
         return "index";
     }
 
