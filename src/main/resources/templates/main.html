@@ -72,8 +72,7 @@
                 <div class="blog-post">
                     <h2 th:text="${article.title}"></h2>
                     <h4>Posted by <a href="#"><span th:text="${article.author}"></span></a> on <span th:text="${article.publishTime}"></span> </h4>
-                    <p th:text="${article.content}">
-                    </p>
+                    <div id="content"></div>
                 </div>
             </div>
             <div class="col-md-1"></div>
@@ -109,6 +108,14 @@
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <!-- BOOTSTRAP SCRIPTS -->
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <!-- MARKDOWN SCRIPTS -->
+    <script src="https://cdn.bootcss.com/markdown.js/0.5.0/markdown.min.js"></script>
+    <script th:inline="javascript">
+        $(document).ready(function() {
+            var content = [[${article.content}]];
+            $("#content").html(markdown.toHTML(content));
+        });
+    </script>
 
 </body>
 </html>

@@ -32,6 +32,10 @@ Docker
 
 ## TODO
 
-- 加入markdown编辑器，方便添加文章（current）
-- 给文章加上评论
-- 用户管理模块
+- 加入markdown编辑器，方便添加文章 ✔(done)️
+- 给文章加上评论（current）
+- 用户管理模块 
+
+## 效果图
+
+![文章页面截图](http://images.cnblogs.com/cnblogs_com/puyangsky/1092407/o_%e5%8d%9a%e5%ae%a2%e7%95%8c%e9%9d%a2.png)
