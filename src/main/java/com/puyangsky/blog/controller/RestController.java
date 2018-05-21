@@ -42,6 +42,8 @@ public class RestController {
     public String addArticle(@RequestBody Article article) {
         JSONObject result = new JSONObject();
         result.put("result", articleService.insertArticle(article));
+        System.out.println("Get params:" + JSON.toJSONString(article)
+                + ", result:" + result.toJSONString());
         return result.toJSONString();
     }
 
