@@ -1,6 +1,7 @@
 package com.puyangsky.blog.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.puyangsky.blog.model.Article;
 import com.puyangsky.blog.model.ArticleCount;
 import com.puyangsky.blog.model.ArticleTagRelationship;
@@ -8,11 +9,11 @@ import com.puyangsky.blog.model.Tag;
 import com.puyangsky.blog.service.ArticleService;
 import com.puyangsky.blog.service.ArticleTagRelationshipService;
 import com.puyangsky.blog.service.TagService;
+import com.puyangsky.blog.service.UserService;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.thymeleaf.util.StringUtils;
 
 import javax.annotation.Resource;
@@ -34,6 +35,9 @@ public class BlogController {
 
     @Resource
     private ArticleTagRelationshipService articleTagRelationshipService;
+
+    @Resource
+    private UserService userService;
 
     @Resource
     private TagService tagService;
@@ -105,6 +109,18 @@ public class BlogController {
         List<ArticleCount> articleCounts = articleService.getArticleCountByMonth();
         model.addAttribute("articleCounts", articleCounts);
         return "index";
+    }
+
+    @RequestMapping(value = "/auth", method = RequestMethod.POST)
+    public String authUser(@RequestParam(name = "username") String username,
+                           @RequestParam(name = "password") String password) {
+        boolean authenticated = userService.authUser(username, password);
+        if (authenticated) {
+            // TODO: session
+            return "index";
+        } else {
+            return "login";
+        }
     }
 
     @RequestMapping("/admin")

@@ -36,7 +36,7 @@
 
     <update id="updateByUsername" parameterType="java.lang.String" >
         update user
-        set username = #{userName,jdbcType=VARCHAR},
+        set username = #{username,jdbcType=VARCHAR},
         password = #{password,jdbcType=VARCHAR}
         where username = #{username,jdbcType=INTEGER}
     </update>

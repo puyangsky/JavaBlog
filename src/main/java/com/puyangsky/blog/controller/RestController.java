@@ -3,8 +3,10 @@ package com.puyangsky.blog.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.puyangsky.blog.model.Article;
+import com.puyangsky.blog.model.User;
 import com.puyangsky.blog.service.ArticleService;
 import com.puyangsky.blog.service.ArticleTagRelationshipService;
+import com.puyangsky.blog.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -21,6 +23,9 @@ public class RestController {
 
     @Resource
     private ArticleService articleService;
+
+    @Resource
+    private UserService userService;
 
     @Resource
     private ArticleTagRelationshipService articleTagRelationshipService;
