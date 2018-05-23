@@ -41,4 +41,4 @@ Docker
 
 ## 效果图
 
-![文章页面截图](http://images.cnblogs.com/cnblogs_com/puyangsky/1092407/o_%e5%8d%9a%e5%ae%a2%e7%95%8c%e9%9d%a2.png)
+![文章页面截图](https://raw.githubusercontent.com/puyangsky/JavaBlog/master/screenshot/%E5%8D%9A%E5%AE%A2%E7%95%8C%E9%9D%A2.png)
