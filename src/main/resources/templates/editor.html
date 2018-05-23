@@ -32,9 +32,9 @@
 <body>
 <form class="form-horizontal" role="form">
     <div class="form-group">
-        <h1 class="col-sm-12 control-label" style="margin: 10px 0;text-align: center">
+        <h2 class="col-sm-12 control-label" style="margin: 10px 0;text-align: center">
             新增文章
-        </h1>
+        </h2>
     </div>
 
     <div class="form-group">
@@ -99,7 +99,6 @@
             "content": $("#content").val(),
             "author": "puyangsky" // fake data
         }
-        console.log("post data: " + JSON.stringify(article));
         $.ajax({
             url: "/api/article",
             contentType: 'application/json',
