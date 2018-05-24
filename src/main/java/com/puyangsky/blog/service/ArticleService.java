@@ -21,4 +21,5 @@ public interface ArticleService {
     List<Article> getArticlesByMonth(String month);
     List<ArticleCount> getArticleCountByMonth();
     int getPages(int pageNumInt);
+    boolean deleteArticleByTitle(String title);
 }

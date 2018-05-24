@@ -36,6 +36,14 @@ public class RestController {
         return JSON.toJSONString(articles);
     }
 
+    @DeleteMapping("/article/{title}")
+    public String deleteArticle(@PathVariable String title) {
+        boolean delete = articleService.deleteArticleByTitle(title);
+        JSONObject result = new JSONObject();
+        result.put("result", delete);
+        return result.toJSONString();
+    }
+
     @GetMapping("/article")
     public String getArticles(@RequestParam(value = "page") int page,
                               @RequestParam(value = "pageNum") int pageNum) {

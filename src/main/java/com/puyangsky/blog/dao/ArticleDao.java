@@ -30,6 +30,8 @@ public interface ArticleDao {
 
     int deleteByPrimaryKey(int id);
 
+    int deleteByTitle(@Param("title") String title);
+
     int insert(Article article);
 
     List<HashMap> selectByMonth();

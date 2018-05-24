@@ -42,6 +42,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public boolean insertArticle(Article article) {
+
         return articleDao.insert(article) == 1;
     }
 
@@ -79,5 +80,10 @@ public class ArticleServiceImpl implements ArticleService {
         int cnt = articleCnt / pageNumInt;
         if (cnt == 0) return 1;
         return articleCnt % pageNumInt == 0 ? cnt : cnt + 1;
+    }
+
+    @Override
+    public boolean deleteArticleByTitle(String title) {
+        return articleDao.deleteByTitle(title) != 0;
     }
 }
