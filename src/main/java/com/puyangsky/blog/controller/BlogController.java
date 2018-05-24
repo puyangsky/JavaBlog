@@ -111,18 +111,6 @@ public class BlogController {
         return "index";
     }
 
-    @RequestMapping(value = "/auth", method = RequestMethod.POST)
-    public String authUser(@RequestParam(name = "username") String username,
-                           @RequestParam(name = "password") String password) {
-        boolean authenticated = userService.authUser(username, password);
-        if (authenticated) {
-            // TODO: session
-            return "index";
-        } else {
-            return "login";
-        }
-    }
-
     @RequestMapping("/admin")
     public String admin() {
         return "admin";

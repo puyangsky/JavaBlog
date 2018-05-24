@@ -46,6 +46,7 @@ public class RestController {
     @PostMapping(value = "/article", consumes = "application/json")
     public String addArticle(@RequestBody Article article) {
         JSONObject result = new JSONObject();
+        // use first 50 characters as abstract
         result.put("result", articleService.insertArticle(article));
         System.out.println("Get params:" + JSON.toJSONString(article)
                 + ", result:" + result.toJSONString());
@@ -56,5 +57,13 @@ public class RestController {
     public String getArticlesByTagName(@RequestParam(value = "tagName") String tagName) {
         List<Article> articles = articleService.getArticlesByTagName(tagName);
         return JSON.toJSONString(articles);
+    }
+
+    @PostMapping(value = "/auth", consumes = "application/json")
+    public String authUser(@RequestBody User user) {
+        boolean authenticated = userService.authUser(user.getUsername(), user.getPassword());
+        JSONObject result = new JSONObject();
+        result.put("authenticated", authenticated);
+        return result.toJSONString();
     }
 }
