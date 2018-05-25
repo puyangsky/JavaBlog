@@ -4,6 +4,7 @@ import com.puyangsky.blog.dao.ArticleDao;
 import com.puyangsky.blog.model.Article;
 import com.puyangsky.blog.model.ArticleCount;
 import com.puyangsky.blog.service.ArticleService;
+import com.puyangsky.blog.util.MarkdownUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -42,7 +43,15 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public boolean insertArticle(Article article) {
-
+        String content = article.getContent();
+        String plainTextContent = MarkdownUtils.markdownToText(content);
+        String abstractContent;
+        if (plainTextContent.length() < 50) {
+            abstractContent = plainTextContent;
+        } else {
+            abstractContent = plainTextContent.substring(0, 50);
+        }
+        article.setAbstractContent(abstractContent);
         return articleDao.insert(article) == 1;
     }
 
