@@ -6,10 +6,11 @@
         <result column="title" property="title" jdbcType="VARCHAR" />
         <result column="content" property="content" jdbcType="VARCHAR" />
         <result column="author" property="author" jdbcType="VARCHAR" />
+        <result column="abstract" property="abstractContent" jdbcType="VARCHAR" />
         <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
     </resultMap>
     <sql id="Base_Column_List" >
-        id, title, content, author, publish_time
+        id, title, content, author, publish_time, abstract
     </sql>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select
@@ -84,8 +85,9 @@
     </update>
     <insert id="insert" parameterType="com.puyangsky.blog.model.Article" >
         insert into article (id, title, content,
-        author, publish_time)
+        author, publish_time, abstract)
         values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR},
-        #{author,jdbcType=VARCHAR}, #{publishTime, jdbcType=TIMESTAMP})
+        #{author,jdbcType=VARCHAR}, #{publishTime, jdbcType=TIMESTAMP},
+        #{abstractContent,jdbcType=VARCHAR})
     </insert>
 </mapper>

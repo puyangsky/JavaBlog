@@ -44,6 +44,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public boolean insertArticle(Article article) {
         String content = article.getContent();
+        // use first 50 characters as abstract
         String plainTextContent = MarkdownUtils.markdownToText(content);
         String abstractContent;
         if (plainTextContent.length() < 50) {

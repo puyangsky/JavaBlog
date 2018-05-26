@@ -54,10 +54,9 @@ public class RestController {
     @PostMapping(value = "/article", consumes = "application/json")
     public String addArticle(@RequestBody Article article) {
         JSONObject result = new JSONObject();
-        // use first 50 characters as abstract
         result.put("result", articleService.insertArticle(article));
-        System.out.println("Get params:" + JSON.toJSONString(article)
-                + ", result:" + result.toJSONString());
+//        System.out.println("Get params:" + JSON.toJSONString(article)
+//                + ", result:" + result.toJSONString());
         return result.toJSONString();
     }
 
