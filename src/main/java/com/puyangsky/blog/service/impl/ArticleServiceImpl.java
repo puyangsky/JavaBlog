@@ -18,6 +18,8 @@ import java.util.List;
 @Service
 public class ArticleServiceImpl implements ArticleService {
 
+    private static final int ABSTRACT_LENGTH = 100;
+
     @Autowired
     private ArticleDao articleDao;
 
@@ -47,10 +49,10 @@ public class ArticleServiceImpl implements ArticleService {
         // use first 50 characters as abstract
         String plainTextContent = MarkdownUtils.markdownToText(content);
         String abstractContent;
-        if (plainTextContent.length() < 50) {
+        if (plainTextContent.length() < ABSTRACT_LENGTH) {
             abstractContent = plainTextContent;
         } else {
-            abstractContent = plainTextContent.substring(0, 50);
+            abstractContent = plainTextContent.substring(0, ABSTRACT_LENGTH);
         }
         article.setAbstractContent(abstractContent);
         return articleDao.insert(article) == 1;
